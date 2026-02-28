@@ -1,1 +1,324 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peerapan Laorchairangsi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --radius: 12px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(88,166,255,.12);
+      color: var(--accent);
+      border: 1px solid rgba(88,166,255,.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      width: fit-content;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header h1 span { color: var(--accent); }
+
+    header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+    }
+
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--surface);
+    }
+
+    .btn:hover { opacity: .8; transform: translateY(-1px); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #0d1117; }
+    .btn.medium  { background: #1a1a1a; border-color: #444; }
+
+    /* ── SECTION ── */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    section h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    @media (max-width: 600px) { .projects { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .2s, transform .15s;
+    }
+
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .lang-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .card h3 { font-size: 1.05rem; font-weight: 600; }
+
+    .card p { color: var(--muted); font-size: 0.9rem; flex: 1; }
+
+    .card-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .card-link {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .card-link:hover { text-decoration: underline; }
+
+    /* ── BLOG CARD ── */
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      transition: border-color .2s;
+    }
+
+    .blog-card:hover { border-color: #444; }
+
+    .blog-info h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+    .blog-info p  { color: var(--muted); font-size: 0.9rem; }
+
+    .medium-logo {
+      font-size: 2rem;
+      flex-shrink: 0;
+      opacity: .85;
+    }
+
+    @media (max-width: 480px) {
+      .blog-card { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <span class="badge">Open to research &amp; collaboration</span>
+    <h1>Hi, I'm <span>Peerapan</span> 👋</h1>
+    <p>
+      Researcher and developer interested in machine learning, optimization,
+      and nature-inspired algorithms. I build things and write about them.
+    </p>
+    <div class="header-links">
+      <a class="btn primary" href="https://github.com/YamatoWestern" target="_blank" rel="noopener">
+        <!-- GitHub icon -->
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38
+            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87
+            2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+            0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82
+            a7.65 7.65 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82
+            2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87
+            3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0
+            .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+      </a>
+      <a class="btn medium" href="https://medium.com/@p_laorchairangsi" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0
+            016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38
+            6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88
+            3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75
+            1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+        </svg>
+        Medium Blog
+      </a>
+    </div>
+  </header>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <!-- analogical-potential -->
+      <div class="card">
+        <div class="card-top">
+          <span class="card-icon">🧠</span>
+          <span class="lang-badge">
+            <span class="lang-dot" style="background:#3572A5"></span>
+            Jupyter Notebook
+          </span>
+        </div>
+        <h3>Analogical Potential</h3>
+        <p>
+          A research project on image classification via analogy learning.
+          Trains neural networks to recognize valid analogies ("A is to B as C is to D")
+          using analogical potential embeddings — no explicit class labels required.
+          Demonstrated on MNIST.
+        </p>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/YamatoWestern/analogical-potential" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- PSO -->
+      <div class="card">
+        <div class="card-top">
+          <span class="card-icon">🐦</span>
+          <span class="lang-badge">
+            <span class="lang-dot" style="background:#f34b7d"></span>
+            C++
+          </span>
+        </div>
+        <h3>PSO</h3>
+        <p>
+          A flexible C++ implementation of Particle Swarm Optimization —
+          a nature-inspired metaheuristic that mimics bird flocking to find
+          optimal solutions. Plug in any fitness function and let the swarm do the work.
+        </p>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/YamatoWestern/PSO" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section>
+    <h2>Blog</h2>
+    <a class="blog-card" href="https://medium.com/@p_laorchairangsi" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+      <div class="blog-info">
+        <h3>Writing on Medium</h3>
+        <p>
+          I write about machine learning, optimization algorithms, and research ideas.
+          Follow along for articles, breakdowns, and experiments.
+        </p>
+        <br/>
+        <span style="font-size:13px; color:var(--accent);">medium.com/@p_laorchairangsi →</span>
+      </div>
+      <div class="medium-logo">✍️</div>
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with plain HTML · <a href="https://github.com/YamatoWestern" target="_blank" rel="noopener">@YamatoWestern</a></p>
+  </footer>
+
+</body>
+</html>
